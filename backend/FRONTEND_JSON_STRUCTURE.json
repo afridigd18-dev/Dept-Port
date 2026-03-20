@@ -1,0 +1,80 @@
+{
+  "__comment": "This file describes the JSON structure expected by the frontend for the Academic Evaluation Module.",
+
+  "POST_Add_Mark_Request": {
+    "description": "Payload to add a new mark entry. All fields are required except optional ones.",
+    "endpoint": "/api/marks/add",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer <token>"
+    },
+    "body": {
+      "studentId": "651a2b3c4d5e6f7a8b9c0d1e",
+      "classCode": "CSE-A-2024",
+      "subject": "Data Structures",
+      "cie1": 45,
+      "cie2": 42,
+      "cie3": 48,
+      "assignmentMark": 5,
+      "attendanceMark": 4,
+      "recordMark": 5,
+      "onlineTestMark": 5,
+      "semesterMark": 92
+    }
+  },
+
+  "POST_Add_Mark_Response": {
+    "description": "Response after successful addition. Note the auto-calculated fields.",
+    "status": 201,
+    "body": {
+      "success": true,
+      "data": {
+        "_id": "651a2b3c4d5e6f7a8b9c0d1f",
+        "studentId": "651a2b3c4d5e6f7a8b9c0d1e",
+        "classCode": "CSE-A-2024",
+        "subject": "Data Structures",
+        "cie1": 45,
+        "cie2": 42,
+        "cie3": 48,
+        "convertedCie1": 9,
+        "convertedCie2": 8.4,
+        "convertedCie3": 9.6,
+        "assignmentMark": 5,
+        "attendanceMark": 4,
+        "recordMark": 5,
+        "onlineTestMark": 5,
+        "internalTotal": 47,
+        "semesterMark": 92,
+        "semesterConverted": 46,
+        "finalTotal": 93,
+        "result": "PASS",
+        "grade": "O",
+        "status": "Draft",
+        "createdAt": "2024-02-18T10:00:00.000Z",
+        "updatedAt": "2024-02-18T10:00:00.000Z",
+        "__v": 0
+      }
+    }
+  },
+
+  "GET_Class_Summary_Response": {
+    "description": "Analytics response for class summary.",
+    "endpoint": "/api/marks/analytics/class-summary/CSE-A-2024",
+    "method": "GET",
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "averageFinal": 75.5,
+        "highestFinal": 98,
+        "lowestFinal": 40,
+        "totalStudents": 60,
+        "passCount": 55,
+        "failCount": 5,
+        "passPercentage": 91.67,
+        "failPercentage": 8.33
+      }
+    }
+  }
+}
